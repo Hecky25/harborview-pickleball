@@ -16,7 +16,7 @@
       --light-gray: #E8E4DF; --dark: #060E18; --radius: 6px; --nav-h: 72px;
     }
     html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); line-height: 1.65; }
+    body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); line-height: 1.65; overflow-x: hidden; }
     h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; line-height: 1.2; }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -295,18 +295,23 @@
     /* Membership note box */
     .mem-note { background: #F5F3EE; border-left: 3px solid var(--gold); border-radius: 4px; padding: 16px 20px; font-size: 0.82rem; color: #3A4050; line-height: 1.65; }
 
+    
+    /* ── Site Header Bar ── */
+    .site-header-bar { width: 100%; background: #FFFFFF; border-bottom: 1px solid rgba(201,168,76,0.25); display: flex; align-items: center; justify-content: center; padding: 0; height: 240px; flex-shrink: 0; cursor: pointer; overflow: hidden; }
+    .site-header-bar img { height: 240px; width: auto; object-fit: contain; display: block; max-width: 900px; }
+
     </style>
 </head>
 <body>
+<!-- SITE HEADER BAR -->
+<div class="site-header-bar" onclick="showPage('home')">
+  <img src="images/hvpc-logo.png" alt="Harbor View Pickleball Club" />
+</div>
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-brand">
-      <div class="nav-monogram">H</div>
-      <div>
-        <div class="nav-brand-name">Harborview Pickleball Club</div>
-        <div class="nav-brand-sub">Est. 1987 &nbsp;&middot;&nbsp; Harborview, CT</div>
-      </div>
+    <div class="nav-brand" onclick="showPage('home')" style="cursor:pointer;">
+      <img src="images/hvpc-logo.png" alt="Harbor View Pickleball Club" style="height:36px;width:auto;background:white;border-radius:4px;padding:2px 8px;display:block;" />
     </div>
     <ul class="nav-links">
       <li><button onclick="showPage('home')" data-page="home" class="active">Home</button></li>
