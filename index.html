@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harborview Pickleball Club — Harborview, CT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0B1A2B; --navy-mid: #122035; --navy-light: #1A2E47;
+      --gold: #C9A84C; --gold-light: #D4B870;
+      --white: #FFFFFF; --off-white: #F8F6F2; --gray: #8A94A0;
+      --light-gray: #E8E4DF; --dark: #060E18; --radius: 6px; --nav-h: 72px;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); line-height: 1.65; }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
+    .section-label { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 10px; }
+    .section-label-light { color: rgba(201,168,76,0.8); }
+    .gold-rule { width: 48px; height: 2px; background: var(--gold); margin-bottom: 18px; }
+    .btn { display: inline-block; padding: 12px 28px; font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; border-radius: var(--radius); transition: all 0.22s; cursor: pointer; border: none; }
+    .btn-gold { background: var(--gold); color: var(--navy); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.35); }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.45); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+    .btn-outline-dark { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); transform: translateY(-2px); }
+    .section { padding: 88px 0; }
+    .section-alt { background: var(--off-white); }
+    .section-dark { background: var(--navy); }
+    .section-heading { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+    .section-heading-light { color: var(--white); }
+    .section-sub { font-size: 1rem; color: var(--gray); max-width: 560px; line-height: 1.75; margin-bottom: 48px; }
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 500; height: var(--nav-h); background: var(--navy); border-bottom: 1px solid rgba(201,168,76,0.15); display: flex; align-items: center; }
+    .nav-inner { max-width: 1140px; margin: 0 auto; padding: 0 32px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav-brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-monogram { width: 38px; height: 38px; background: var(--gold); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); flex-shrink: 0; }
+    .nav-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--white); line-height: 1.2; }
+    .nav-brand-sub { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links button { background: none; border: none; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.76rem; font-weight: 500; color: rgba(255,255,255,0.6); letter-spacing: 0.03em; padding: 6px 9px; border-radius: 4px; transition: color 0.2s, background 0.2s; }
+    .nav-links button:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+    .nav-links button.active { color: var(--gold); }
+    .nav-cta { font-size: 0.78rem !important; padding: 8px 18px !important; flex-shrink: 0; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    .mobile-menu { display: none; flex-direction: column; background: var(--navy); padding: 12px 24px 20px; position: sticky; top: var(--nav-h); z-index: 499; border-bottom: 1px solid rgba(201,168,76,0.12); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu button { background: none; border: none; cursor: pointer; font-family: 'Inter', sans-serif; padding: 11px 0; font-size: 0.95rem; font-weight: 500; color: rgba(255,255,255,0.75); text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .mobile-menu button:last-child { border-bottom: none; }
+    /* PAGE HEADER */
+    .page-header { background: var(--navy); padding: 60px 32px 56px; position: relative; overflow: hidden; }
+    .page-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .page-header h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .page-header p { font-size: 1rem; color: rgba(255,255,255,0.5); max-width: 540px; }
+    /* HERO */
+    .hero { position: relative; height: calc(100vh - var(--nav-h)); min-height: 600px; max-height: 860px; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: var(--navy); }
+    .hero-overlay { position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 0%, rgba(201,168,76,0.07) 0%, transparent 60%); }
+    .hero-content { position: relative; z-index: 2; padding: 0 32px; max-width: 1140px; margin: 0 auto; width: 100%; }
+    .hero-eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 14px; }
+    .hero-eyebrow::before { content: ''; display: block; width: 36px; height: 1px; background: var(--gold); }
+    .hero h1 { font-size: clamp(3rem, 7vw, 5.2rem); font-weight: 700; color: var(--white); line-height: 1.08; margin-bottom: 24px; max-width: 720px; }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 480px; line-height: 1.75; margin-bottom: 36px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    /* STATS BAR */
+    .stats-bar { background: var(--gold); }
+    .stats-bar-inner { max-width: 1140px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-item { padding: 26px 20px; text-align: center; border-right: 1px solid rgba(11,26,43,0.12); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(11,26,43,0.55); }
+    /* WELCOME */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .two-col-top { align-items: start; }
+    .body-text p { font-size: 0.97rem; color: #4A5060; line-height: 1.8; margin-bottom: 16px; }
+    .welcome-img { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; }
+    .welcome-img img { width: 100%; height: 100%; object-fit: cover; }
+    /* NEWS CARDS */
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .news-card { border: 1px solid var(--light-gray); border-radius: var(--radius); overflow: hidden; background: var(--white); }
+    .news-card-img { height: 190px; overflow: hidden; }
+    .news-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .news-card-img-placeholder { width: 100%; height: 100%; background: var(--navy-mid); }
+    .news-card-body { padding: 22px; }
+    .news-date { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .news-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 9px; line-height: 1.3; }
+    .news-card p { font-size: 0.87rem; color: var(--gray); line-height: 1.65; }
+    /* ABOUT */
+    .facilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+    .facility-card { background: var(--navy); border-radius: var(--radius); padding: 28px 22px; text-align: center; }
+    .facility-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+    .facility-name { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; }
+    .board-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+    .board-card { text-align: center; padding: 26px 14px; border: 1px solid var(--light-gray); border-radius: var(--radius); }
+    .board-initials { width: 54px; height: 54px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 700; color: var(--gold); }
+    .board-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+    .board-role { font-size: 0.72rem; color: var(--gray); font-weight: 500; letter-spacing: 0.05em; }
+    /* COURTS */
+    .courts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 44px; }
+    .court-card { background: var(--navy); border-radius: var(--radius); padding: 36px 30px; border: 1px solid rgba(201,168,76,0.18); }
+    .court-num { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+    .court-card h3 { font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 14px; }
+    .court-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .court-card li { font-size: 0.87rem; color: rgba(255,255,255,0.62); display: flex; gap: 10px; }
+    .court-card li::before { content: '\2014'; color: var(--gold); flex-shrink: 0; }
+    .reservation-box { background: var(--off-white); border: 1px solid var(--light-gray); border-radius: var(--radius); padding: 48px 40px; text-align: center; }
+    .reservation-box h3 { font-size: 1.8rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .reservation-box p { font-size: 0.92rem; color: var(--gray); margin-bottom: 24px; }
+    .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 860px; }
+    .rule-item { display: flex; gap: 14px; font-size: 0.9rem; color: #4A5060; line-height: 1.65; }
+    .rule-num { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: var(--gold); flex-shrink: 0; min-width: 24px; }
+    /* EVENTS TABLE */
+    .events-table { width: 100%; border-collapse: collapse; }
+    .events-table th { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); padding: 0 14px 12px; text-align: left; border-bottom: 2px solid var(--light-gray); }
+    .events-table td { padding: 16px 14px; font-size: 0.9rem; color: var(--navy); border-bottom: 1px solid var(--light-gray); vertical-align: top; }
+    .events-table tr:last-child td { border-bottom: none; }
+    .etag { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 100px; }
+    .etag-league { background: var(--navy); color: var(--gold); }
+    .etag-tournament { background: rgba(201,168,76,0.15); color: #8B6A20; }
+    .etag-open { background: rgba(11,26,43,0.06); color: var(--navy); }
+    .etag-junior { background: rgba(74,96,128,0.1); color: #3A5070; }
+    /* LEAGUES */
+    .league-tabs { display: flex; gap: 2px; border-bottom: 2px solid var(--light-gray); margin-bottom: 40px; }
+    .league-tab { font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600; padding: 11px 18px; background: none; border: none; cursor: pointer; color: var(--gray); border-bottom: 2px solid transparent; margin-bottom: -2px; letter-spacing: 0.03em; transition: color 0.2s, border-color 0.2s; }
+    .league-tab:hover { color: var(--navy); }
+    .league-tab.active { color: var(--navy); border-bottom-color: var(--gold); }
+    .league-panel { display: none; }
+    .league-panel.active { display: block; }
+    .standings-table { width: 100%; border-collapse: collapse; margin-bottom: 52px; }
+    .standings-table th { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); padding: 0 14px 12px; text-align: left; border-bottom: 2px solid var(--light-gray); }
+    .standings-table th:not(:first-child):not(:nth-child(2)) { text-align: center; }
+    .standings-table td { padding: 13px 14px; font-size: 0.9rem; border-bottom: 1px solid var(--light-gray); color: var(--navy); }
+    .standings-table td:not(:first-child):not(:nth-child(2)) { text-align: center; }
+    .standings-table tr:last-child td { border-bottom: none; }
+    .rank { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 700; color: var(--gray); }
+    .rank-1 { color: var(--gold); }
+    .rank-2 { color: #9BA7B5; }
+    .rank-3 { color: #A0784A; }
+    .playoff-heading { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; display: flex; align-items: center; gap: 14px; }
+    .playoff-heading::after { content: ''; flex: 1; height: 1px; background: var(--light-gray); }
+    /* BRACKET */
+    .bracket-wrap { overflow-x: auto; padding-bottom: 8px; margin-bottom: 64px; }
+    .bracket { display: flex; gap: 28px; align-items: flex-start; min-width: 520px; }
+    .bracket-col { display: flex; flex-direction: column; gap: 22px; }
+    .bracket-col-label { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
+    .bracket-match { display: flex; flex-direction: column; gap: 3px; }
+    .b-slot { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px 14px; border-radius: 4px; font-size: 0.86rem; min-width: 180px; }
+    .b-slot-win { background: var(--navy); border: 1px solid rgba(201,168,76,0.4); color: var(--white); font-weight: 600; }
+    .b-slot-lose { background: var(--off-white); border: 1px solid var(--light-gray); color: #6A7080; }
+    .b-score { font-size: 0.76rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+    .b-score-lose { color: var(--gray); }
+    .bracket-final { margin-top: 46px; }
+    .bracket-champ-card { background: var(--navy); border: 1px solid var(--gold); border-radius: var(--radius); padding: 20px 22px; text-align: center; margin-top: 38px; }
+    .bracket-champ-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .bracket-champ-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); }
+    /* LESSONS */
+    .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 56px; }
+    .program-card { background: var(--off-white); border: 1px solid var(--light-gray); border-radius: var(--radius); padding: 28px 24px; }
+    .program-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+    .program-price { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
+    .program-card p { font-size: 0.86rem; color: var(--gray); line-height: 1.65; }
+    .instructors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .instructor-card { display: grid; grid-template-columns: 110px 1fr; border: 1px solid var(--light-gray); border-radius: var(--radius); overflow: hidden; }
+    .instructor-photo { height: 160px; overflow: hidden; }
+    .instructor-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .instructor-info { padding: 22px 22px 22px 0; }
+    .instructor-info h3 { font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .instructor-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 9px; }
+    .instructor-info p { font-size: 0.86rem; color: var(--gray); line-height: 1.65; }
+    /* JUNIORS */
+    .juniors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 48px; }
+    .junior-card { border: 1px solid var(--light-gray); border-radius: var(--radius); overflow: hidden; }
+    .junior-card-hd { background: var(--navy); padding: 22px 24px; }
+    .junior-card-hd h3 { font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+    .junior-ages { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+    .junior-card-body { padding: 22px; }
+    .junior-card-body p { font-size: 0.86rem; color: var(--gray); line-height: 1.65; margin-bottom: 14px; }
+    .sched-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--light-gray); font-size: 0.86rem; gap: 10px; }
+    .sched-item:last-of-type { border-bottom: none; }
+    .sched-day { font-weight: 600; color: var(--navy); min-width: 80px; }
+    .sched-focus { font-size: 0.73rem; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; }
+    .sched-time { color: var(--gray); font-size: 0.82rem; white-space: nowrap; }
+    .junior-fee { font-size: 0.8rem; color: var(--gray); margin-top: 12px; }
+    .summer-banner { background: var(--gold); border-radius: var(--radius); padding: 38px 44px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px; }
+    .summer-banner h3 { font-size: 1.8rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .summer-banner p { font-size: 0.9rem; color: rgba(11,26,43,0.68); }
+    /* DONATE */
+    .campaign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-bottom: 52px; }
+    .campaign-card { background: var(--white); border: 1px solid var(--light-gray); border-radius: var(--radius); padding: 34px 30px; }
+    .campaign-tag { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; display: block; }
+    .campaign-card h3 { font-size: 1.55rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .campaign-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.7; margin-bottom: 22px; }
+    .progress-bar { height: 6px; background: var(--light-gray); border-radius: 3px; overflow: hidden; margin-bottom: 9px; }
+    .progress-fill { height: 100%; background: var(--gold); border-radius: 3px; }
+    .progress-labels { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--gray); }
+    .progress-labels strong { color: var(--navy); }
+    .donate-form { background: var(--off-white); border: 1px solid var(--light-gray); border-radius: var(--radius); padding: 44px; }
+    .donate-form h3 { font-size: 1.8rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .donate-form > p { font-size: 0.9rem; color: var(--gray); margin-bottom: 30px; }
+    .amount-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 22px; }
+    .amount-btn { padding: 12px 8px; background: var(--white); border: 1.5px solid var(--light-gray); border-radius: var(--radius); font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); cursor: pointer; transition: all 0.2s; text-align: center; }
+    .amount-btn:hover, .amount-btn.selected { background: var(--navy); color: var(--gold); border-color: var(--navy); }
+    /* CONTACT & FORM */
+    .contact-detail { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+    .contact-icon { width: 40px; height: 40px; background: var(--navy); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; font-weight: 700; color: var(--gold); flex-shrink: 0; letter-spacing: 0.02em; text-align: center; }
+    .contact-detail-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 3px; }
+    .contact-detail-value { font-size: 0.92rem; color: var(--navy); line-height: 1.5; }
+    .form-card { background: var(--off-white); border: 1px solid var(--light-gray); border-radius: var(--radius); padding: 38px 34px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.05em; color: var(--navy); margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 11px 13px; border: 1.5px solid var(--light-gray); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--navy); background: var(--white); transition: border-color 0.2s; outline: none; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--navy); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn-submit { width: 100%; background: var(--navy); color: var(--white); padding: 14px; border-radius: var(--radius); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.92rem; letter-spacing: 0.05em; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .btn-submit:hover { background: var(--navy-light); transform: translateY(-2px); }
+    .confirm-msg { display: none; margin-top: 14px; text-align: center; font-weight: 600; color: var(--navy); font-size: 0.9rem; }
+    /* FOOTER */
+    footer { background: var(--dark); padding: 52px 32px 30px; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 700; color: var(--white); }
+    .footer-gold-line { width: 32px; height: 1px; background: var(--gold); margin: 10px 0; }
+    .footer-brand p { font-size: 0.83rem; color: rgba(255,255,255,0.42); line-height: 1.65; max-width: 240px; }
+    .footer-col h4 { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul button { background: none; border: none; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.83rem; color: rgba(255,255,255,0.58); text-align: left; padding: 0; transition: color 0.2s; }
+    .footer-col ul button:hover { color: var(--white); }
+    .footer-bottom { max-width: 1140px; margin: 26px auto 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .footer-bottom p { font-size: 0.76rem; color: rgba(255,255,255,0.32); }
+    .footer-credit a { color: rgba(201,168,76,0.65); }
+
+    .btn-teamreach { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; background: #2D9CDB; color: var(--white); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.04em; border: none; cursor: pointer; transition: all 0.22s; flex-shrink: 0; text-decoration: none; }
+    .btn-teamreach:hover { background: #1A85C2; transform: translateY(-2px); box-shadow: 0 5px 16px rgba(45,156,219,0.35); }
+    .btn-teamreach svg { flex-shrink: 0; }
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .board-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .two-col, .instructors-grid, .campaign-grid, .courts-grid { grid-template-columns: 1fr; gap: 36px; }
+      .news-grid, .programs-grid, .juniors-grid, .facilities-grid { grid-template-columns: 1fr; }
+      .stats-bar-inner { grid-template-columns: 1fr 1fr; }
+      .board-grid { grid-template-columns: 1fr 1fr; }
+      .summer-banner { grid-template-columns: 1fr; }
+      .amount-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 26px; }
+      .rules-grid { grid-template-columns: 1fr; }
+      .donate-form { padding: 28px 22px; }
+    }
+  
+    /* ── Membership Page ── */
+    .mem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 64px; }
+    @media (max-width: 1024px) { .mem-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px)  { .mem-grid { grid-template-columns: 1fr; } }
+    .mem-card { background: var(--white); border: 1.5px solid var(--light-gray); border-radius: 10px; padding: 32px 24px 28px; display: flex; flex-direction: column; position: relative; transition: box-shadow 0.22s, transform 0.22s; }
+    .mem-card:hover { box-shadow: 0 8px 28px rgba(11,26,43,0.10); transform: translateY(-3px); }
+    .mem-card.featured { border-color: var(--gold); box-shadow: 0 6px 24px rgba(201,168,76,0.18); }
+    .mem-badge { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-bottom: 16px; align-self: flex-start; }
+    .mem-tier { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+    .mem-price-wrap { margin-bottom: 6px; }
+    .mem-price { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 700; color: var(--navy); line-height: 1; }
+    .mem-period { font-size: 0.78rem; color: var(--gray); font-weight: 500; }
+    .mem-annual { font-size: 0.75rem; color: #5A8A5A; font-weight: 600; margin-bottom: 20px; }
+    .mem-divider { border: none; border-top: 1.5px solid var(--light-gray); margin: 20px 0; }
+    .mem-features { list-style: none; padding: 0; margin: 0 0 28px; flex: 1; }
+    .mem-features li { font-size: 0.82rem; color: #3A4050; padding: 5px 0; display: flex; align-items: flex-start; gap: 9px; line-height: 1.45; }
+    .mem-features li::before { content: ''; display: block; width: 14px; height: 14px; min-width: 14px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23C9A84C' opacity='0.15'/%3E%3Cpath d='M4 8l3 3 5-5' stroke='%23C9A84C' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; margin-top: 2px; }
+    .mem-features li.muted { color: var(--gray); }
+    .mem-features li.muted::before { opacity: 0.4; }
+    .mem-cta { margin-top: auto; }
+    /* How It Works */
+    .how-wrap { background: var(--navy); border-radius: 12px; padding: 52px 48px; margin-bottom: 64px; }
+    .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
+    @media (max-width: 700px) { .how-steps { grid-template-columns: 1fr; gap: 28px; } .how-wrap { padding: 36px 24px; } }
+    .how-step { }
+    .how-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--gold); opacity: 0.5; line-height: 1; margin-bottom: 12px; }
+    .how-title { font-size: 0.88rem; font-weight: 700; color: var(--white); letter-spacing: 0.03em; margin-bottom: 8px; }
+    .how-desc { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
+    /* Membership note box */
+    .mem-note { background: #F5F3EE; border-left: 3px solid var(--gold); border-radius: 4px; padding: 16px 20px; font-size: 0.82rem; color: #3A4050; line-height: 1.65; }
+
+    </style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <div class="nav-monogram">H</div>
+      <div>
+        <div class="nav-brand-name">Harborview Pickleball Club</div>
+        <div class="nav-brand-sub">Est. 1987 &nbsp;&middot;&nbsp; Harborview, CT</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><button onclick="showPage('home')" data-page="home" class="active">Home</button></li>
+      <li><button onclick="showPage('about')" data-page="about">About</button></li>
+      <li><button onclick="showPage('courts')" data-page="courts">Courts</button></li>
+      <li><button onclick="showPage('events')" data-page="events">Events</button></li>
+      <li><button onclick="showPage('leagues')" data-page="leagues">Leagues</button></li>
+      <li><button onclick="showPage('lessons')" data-page="lessons">Lessons</button></li>
+      <li><button onclick="showPage('juniors')" data-page="juniors">Juniors</button></li>
+      <li><button onclick="showPage('news')" data-page="news">News</button></li>
+      <li><button onclick="showPage('donate')" data-page="donate">Donate</button></li>
+      <li><button onclick="showPage('membership')" data-page="membership">Membership</button></li>
+      <li><button onclick="showPage('contact')" data-page="contact">Contact</button></li>
+    </ul>
+    <button class="btn btn-gold nav-cta" onclick="showPage('membership')">Become a Member</button>
+    <a href="https://www.teamreach.com" target="_blank" rel="noopener noreferrer" class="btn-teamreach"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="7" r="4" fill="currentColor"/><path d="M2 21c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/><circle cx="19" cy="8" r="3" fill="currentColor" opacity="0.65"/><path d="M22 21c0-2.76-1.34-5-3-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.65"/></svg>Team Reach</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <button onclick="showPage('home');closeMobile()">Home</button>
+  <button onclick="showPage('about');closeMobile()">About</button>
+  <button onclick="showPage('courts');closeMobile()">Courts</button>
+  <button onclick="showPage('events');closeMobile()">Events</button>
+  <button onclick="showPage('leagues');closeMobile()">Leagues</button>
+  <button onclick="showPage('lessons');closeMobile()">Lessons</button>
+  <button onclick="showPage('juniors');closeMobile()">Juniors</button>
+  <button onclick="showPage('news');closeMobile()">News</button>
+  <button onclick="showPage('donate');closeMobile()">Donate</button>
+  <button onclick="showPage('membership');closeMobile()">Membership</button>
+  <button onclick="showPage('contact');closeMobile()">Contact</button>
+  <a href="https://www.teamreach.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;padding:11px 0;font-size:0.95rem;font-weight:600;color:#2D9CDB;border-top:1px solid rgba(255,255,255,0.08);text-decoration:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="7" r="4" fill="currentColor"/><path d="M2 21c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/><circle cx="19" cy="8" r="3" fill="currentColor" opacity="0.65"/><path d="M22 21c0-2.76-1.34-5-3-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.65"/></svg>Team Reach</a>
+</div>
+
+<!-- PAGE: HOME -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Harborview, Connecticut</div>
+      <h1>Where the game is<br />played with <em>purpose.</em></h1>
+      <p class="hero-sub">A private pickleball club built for serious players and welcoming communities. Sixteen courts. Four leagues. One standard of excellence.</p>
+      <div class="hero-btns">
+        <button class="btn btn-gold" onclick="showPage('membership')">Become a Member</button>
+        <button class="btn btn-outline" onclick="showPage('about')">Learn More</button>
+      </div>
+    </div>
+  </section>
+  <div class="stats-bar">
+    <div class="stats-bar-inner">
+      <div class="stat-item"><div class="stat-num">340+</div><div class="stat-label">Active Members</div></div>
+      <div class="stat-item"><div class="stat-num">16</div><div class="stat-label">Courts</div></div>
+      <div class="stat-item"><div class="stat-num">1987</div><div class="stat-label">Year Founded</div></div>
+      <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Skill-Based Leagues</div></div>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="gold-rule"></div>
+          <span class="section-label">Welcome to HPC</span>
+          <h2 class="section-heading">More than a club.<br />A community.</h2>
+          <div class="body-text">
+            <p>Founded in 1987 as a private racquet sports club, Harborview has evolved into one of the premier pickleball destinations in the Northeast. We offer world-class facilities, structured competitive leagues, and programming for players of every age and skill level.</p>
+            <p>Whether you are stepping onto a court for the first time or training for national competition, Harborview is the club that meets you where you are — and helps you get where you want to go.</p>
+          </div>
+          <button class="btn btn-outline-dark" onclick="showPage('about')" style="margin-top:10px;">Our Story</button>
+        </div>
+        <div class="welcome-img"><img src="images/pb-29439333.jpg" alt="Players at Harborview Pickleball Club" /></div>
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <div class="gold-rule"></div>
+      <span class="section-label">Latest from the Club</span>
+      <h2 class="section-heading">News &amp; Announcements</h2>
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-card-img"><img src="images/pb-spring.jpg" alt="Spring League" /></div>
+          <div class="news-card-body">
+            <div class="news-date">March 1, 2026</div>
+            <h3>Spring League Registration Now Open</h3>
+            <p>Registration for all four skill-level leagues opens March 15. Spots are limited — secure your place before the deadline.</p>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><img src="images/pb-29439333.jpg" alt="Court Expansion" /></div>
+          <div class="news-card-body">
+            <div class="news-date">February 22, 2026</div>
+            <h3>Court Expansion Project Fully Funded</h3>
+            <p>Thanks to member generosity, our four-court indoor expansion has reached full funding. Construction begins this April.</p>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><img src="images/pb-29439337.jpg" alt="Jonathan Mercer" /></div>
+          <div class="news-card-body">
+            <div class="news-date">February 10, 2026</div>
+            <h3>Jonathan Mercer Named Head Pro</h3>
+            <p>We are proud to welcome Jonathan Mercer as our new Head Professional — USAPA Level II certified with 12 years of competitive experience.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:32px;text-align:center;"><button class="btn btn-outline-dark" onclick="showPage('news')">View All News</button></div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: ABOUT -->
+<div class="page" id="page-about">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label section-label-light">About HPC</span>
+      <h1>Built for the game.<br />Built for the community.</h1>
+      <p>The history, people, and facilities behind Harborview Pickleball Club.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="two-col two-col-top">
+        <div>
+          <div class="gold-rule"></div>
+          <span class="section-label">Our History</span>
+          <h2 class="section-heading">From tennis courts to the premier pickleball club in Connecticut.</h2>
+        </div>
+        <div class="body-text">
+          <p>Harborview was established in 1987 by a group of twelve local families who wanted a place to play tennis close to the shore. For more than three decades, the club served as a quiet institution for Harborview and surrounding communities.</p>
+          <p>In 2018, responding to growing member interest, the club converted four tennis courts to pickleball and introduced its first structured open-play sessions. The response exceeded all expectations. By 2020, pickleball had become the club's primary sport and twelve of our sixteen courts were dedicated to it.</p>
+          <p>Today, Harborview Pickleball Club is recognized as one of the top private pickleball clubs in the Northeast — home to competitive leagues, nationally ranked junior players, and a membership that continues to grow year over year.</p>
+          <p>Our mission remains what it has always been: provide exceptional facilities, structured programming, and a welcoming community for players who love the game.</p>
+        </div>
+      </div>
+      <div class="facilities-grid">
+        <div class="facility-card"><div class="facility-num">12</div><div class="facility-name">Outdoor Courts</div></div>
+        <div class="facility-card"><div class="facility-num">4</div><div class="facility-name">Indoor Courts</div></div>
+        <div class="facility-card"><div class="facility-num">6</div><div class="facility-name">Lighted Courts</div></div>
+        <div class="facility-card"><div class="facility-num">1</div><div class="facility-name">Pro Shop</div></div>
+        <div class="facility-card"><div class="facility-num">1</div><div class="facility-name">Clubhouse</div></div>
+        <div class="facility-card"><div class="facility-num">340+</div><div class="facility-name">Active Members</div></div>
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <div class="gold-rule"></div>
+      <span class="section-label">Leadership</span>
+      <h2 class="section-heading">Board of Directors</h2>
+      <p class="section-sub">Harborview is governed by a volunteer board of five elected members who each serve two-year terms.</p>
+      <div class="board-grid">
+        <div class="board-card"><div class="board-initials">WH</div><div class="board-name">William Hargrove</div><div class="board-role">President</div></div>
+        <div class="board-card"><div class="board-initials">SM</div><div class="board-name">Sandra Merritt</div><div class="board-role">Vice President</div></div>
+        <div class="board-card"><div class="board-initials">GN</div><div class="board-name">Gerald Nash</div><div class="board-role">Treasurer</div></div>
+        <div class="board-card"><div class="board-initials">DC</div><div class="board-name">Donna Cavanaugh</div><div class="board-role">Secretary</div></div>
+        <div class="board-card"><div class="board-initials">RB</div><div class="board-name">Richard Bouchard</div><div class="board-role">Member at Large</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: COURTS -->
+<div class="page" id="page-courts">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label section-label-light">Facilities</span>
+      <h1>Sixteen courts.<br />Built to perform.</h1>
+      <p>Court availability, reservation system, and facility information.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="courts-grid">
+        <div class="court-card">
+          <div class="court-num">12</div>
+          <h3>Outdoor Courts</h3>
+          <ul>
+            <li>Courts 1&ndash;12, all hard surface</li>
+            <li>Courts 1&ndash;6 equipped with LED night lighting</li>
+            <li>Windscreens on all perimeter courts</li>
+            <li>Dedicated warm-up wall, Court 12 side</li>
+            <li>Available daily, 7:00 AM &ndash; 9:00 PM</li>
+          </ul>
+        </div>
+        <div class="court-card">
+          <div class="court-num">4</div>
+          <h3>Indoor Courts</h3>
+          <ul>
+            <li>Courts A&ndash;D, cushioned sport surface</li>
+            <li>Climate-controlled year-round</li>
+            <li>Junior programming Mon&ndash;Fri afternoons</li>
+            <li>Open to all members on weekends</li>
+            <li>Available daily, 6:00 AM &ndash; 10:00 PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reservation-box">
+        <h3>Reserve a Court</h3>
+        <p>Members may reserve courts up to 7 days in advance. Walk-on play is available on all unreserved courts at no additional charge.</p>
+        <button class="btn btn-gold">Open Court Reservation System</button>
+        <p style="margin-top:14px;font-size:0.8rem;color:var(--gray);">Court Reserve integration active for members. Log in with your member credentials to book.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <div class="gold-rule"></div>
+      <span class="section-label">Court Rules</span>
+      <h2 class="section-heading">Standards of Play</h2>
+      <div class="rules-grid">
+        <div class="rule-item"><span class="rule-num">01</span>Proper court shoes required on all surfaces. No running shoes or sandals permitted.</div>
+        <div class="rule-item"><span class="rule-num">02</span>Court time is limited to 60 minutes when other members are waiting to play.</div>
+        <div class="rule-item"><span class="rule-num">03</span>Reserved courts are held for 10 minutes. Unclaimed courts are released to walk-on players.</div>
+        <div class="rule-item"><span class="rule-num">04</span>Members must accompany all guests at all times. Guest court fee: $15 per visit.</div>
+        <div class="rule-item"><span class="rule-num">05</span>All disputes are settled by the USAPA rulebook. Staff and pro decisions are final.</div>
+        <div class="rule-item"><span class="rule-num">06</span>Proper attire required at all times. Collared shirts or athletic wear only. No denim.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: EVENTS -->
+<div class="page" id="page-events">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label section-label-light">Calendar</span>
+      <h1>Events &amp; Tournaments</h1>
+      <p>Upcoming competitions, clinics, and club events for Spring 2026.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="gold-rule"></div>
+      <span class="section-label">Spring 2026</span>
+      <h2 class="section-heading">Upcoming Schedule</h2>
+      <table class="events-table">
+        <thead><tr><th>Date</th><th>Event</th><th>Format</th><th>Eligibility</th><th>Registration</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Mar 15</strong></td>
+            <td><strong>Spring League Kickoff</strong><br /><span style="font-size:0.8rem;color:var(--gray);">Opening Day ceremonies, all courts</span></td>
+            <td><span class="etag etag-league">League Play</span></td>
+            <td>League Members</td><td>Auto-enrolled</td>
+          </tr>
+          <tr>
+            <td><strong>Mar 22</strong></td>
+            <td><strong>Member Mixer &amp; Social Doubles</strong><br /><span style="font-size:0.8rem;color:var(--gray);">Casual doubles, refreshments provided</span></td>
+            <td><span class="etag etag-open">Open Play</span></td>
+            <td>All Members</td><td>No registration</td>
+          </tr>
+          <tr>
+            <td><strong>Apr 5</strong></td>
+            <td><strong>HPC Spring Classic &mdash; Singles</strong><br /><span style="font-size:0.8rem;color:var(--gray);">3.5+ division, prize purse $1,200</span></td>
+            <td><span class="etag etag-tournament">Tournament</span></td>
+            <td>3.5+ Rating</td>
+            <td><button class="btn btn-gold" style="font-size:0.76rem;padding:6px 13px;" onclick="showPage('contact')">Register</button></td>
+          </tr>
+          <tr>
+            <td><strong>Apr 5</strong></td>
+            <td><strong>HPC Spring Classic &mdash; Doubles</strong><br /><span style="font-size:0.8rem;color:var(--gray);">All skill divisions, mixed and gender draw</span></td>
+            <td><span class="etag etag-tournament">Tournament</span></td>
+            <td>All Skill Levels</td>
+            <td><button class="btn btn-gold" style="font-size:0.76rem;padding:6px 13px;" onclick="showPage('contact')">Register</button></td>
+          </tr>
+          <tr>
+            <td><strong>Apr 19</strong></td>
+            <td><strong>Junior Club Championship</strong><br /><span style="font-size:0.8rem;color:var(--gray);">Youth ages 10&ndash;18, medals and trophies</span></td>
+            <td><span class="etag etag-junior">Junior Event</span></td>
+            <td>Junior Members</td>
+            <td><button class="btn btn-outline-dark" style="font-size:0.76rem;padding:6px 13px;" onclick="showPage('contact')">Register</button></td>
+          </tr>
+          <tr>
+            <td><strong>May 3</strong></td>
+            <td><strong>Member Guest Day</strong><br /><span style="font-size:0.8rem;color:var(--gray);">Guest fee waived all day for all members</span></td>
+            <td><span class="etag etag-open">Open Play</span></td>
+            <td>Members + Guests</td><td>No registration</td>
+          </tr>
+          <tr>
+            <td><strong>May 17</strong></td>
+            <td><strong>Spring League Playoffs</strong><br /><span style="font-size:0.8rem;color:var(--gray);">Top 4 per division compete for championship</span></td>
+            <td><span class="etag etag-league">League Play</span></td>
+            <td>League Qualifiers</td><td>Auto-enrolled</td>
+          </tr>
+          <tr>
+            <td><strong>May 24</strong></td>
+            <td><strong>Charity Doubles Fundraiser</strong><br /><span style="font-size:0.8rem;color:var(--gray);">Benefits Junior Scholarship Program</span></td>
+            <td><span class="etag etag-open">Open Play</span></td>
+            <td>All Members</td>
+            <td><button class="btn btn-outline-dark" style="font-size:0.76rem;padding:6px 13px;" onclick="showPage('donate')">Donate</button></td>
+          </tr>
+          <tr>
+            <td><strong>Jun 7</strong></td>
+            <td><strong>Summer Kickoff Classic</strong><br /><span style="font-size:0.8rem;color:var(--gray);">All divisions, outdoor courts 1&ndash;12</span></td>
+            <td><span class="etag etag-tournament">Tournament</span></td>
+            <td>All Skill Levels</td><td>Opens May 1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+<!-- PAGE: LEAGUES -->
+<div class="page" id="page-leagues">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label section-label-light">Competition</span>
+      <h1>League Standings<br />&amp; Brackets</h1>
+      <p>Current standings for all four skill-level leagues. Spring 2026 season.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="league-tabs">
+        <button class="league-tab active" onclick="showLeague(this,'novice')">2.5 &mdash; Novice</button>
+        <button class="league-tab" onclick="showLeague(this,'intermediate')">3.0 &mdash; Intermediate</button>
+        <button class="league-tab" onclick="showLeague(this,'advanced')">3.5 &mdash; Advanced</button>
+        <button class="league-tab" onclick="showLeague(this,'elite')">4.0+ &mdash; Elite</button>
+      </div>
+
+      <!-- NOVICE -->
+      <div class="league-panel active" id="league-novice">
+        <div class="gold-rule"></div>
+        <h3 style="font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:4px;">Sunrise League</h3>
+        <p style="font-size:0.83rem;color:var(--gray);margin-bottom:30px;">Rating: 2.5 &nbsp;&middot;&nbsp; 8 Players &nbsp;&middot;&nbsp; Round Robin &nbsp;&middot;&nbsp; 10 Games Played</p>
+        <table class="standings-table">
+          <thead><tr><th style="width:36px;">#</th><th>Player</th><th>W</th><th>L</th><th>Win %</th><th>Pts Diff</th></tr></thead>
+          <tbody>
+            <tr><td class="rank rank-1">1</td><td><strong>Margaret Holloway</strong></td><td>8</td><td>2</td><td>80%</td><td>+44</td></tr>
+            <tr><td class="rank rank-2">2</td><td>Daniel Pruitt</td><td>7</td><td>3</td><td>70%</td><td>+29</td></tr>
+            <tr><td class="rank rank-3">3</td><td>Susan Fairbanks</td><td>6</td><td>4</td><td>60%</td><td>+14</td></tr>
+            <tr><td class="rank rank-3">4</td><td>Robert Chen</td><td>6</td><td>4</td><td>60%</td><td>+8</td></tr>
+            <tr><td class="rank">5</td><td>Patricia Voss</td><td>4</td><td>6</td><td>40%</td><td>-11</td></tr>
+            <tr><td class="rank">6</td><td>Thomas Wren</td><td>3</td><td>7</td><td>30%</td><td>-26</td></tr>
+            <tr><td class="rank">7</td><td>Linda Marsh</td><td>2</td><td>8</td><td>20%</td><td>-38</td></tr>
+            <tr><td class="rank">8</td><td>Kevin Oakes</td><td>1</td><td>9</td><td>10%</td><td>-52</td></tr>
+          </tbody>
+        </table>
+        <div class="playoff-heading">Playoff Bracket &mdash; Top 4 Advance</div>
+        <div class="bracket-wrap">
+          <div class="bracket">
+            <div class="bracket-col">
+              <div class="bracket-col-label">Semifinals</div>
+              <div class="bracket-match"><div class="b-slot b-slot-win">M. Holloway <span class="b-score">11&ndash;7</span></div><div class="b-slot b-slot-lose">S. Fairbanks <span class="b-score b-score-lose">7&ndash;11</span></div></div>
+              <div class="bracket-match"><div class="b-slot b-slot-win">D. Pruitt <span class="b-score">11&ndash;9</span></div><div class="b-slot b-slot-lose">R. Chen <span class="b-score b-score-lose">9&ndash;11</span></div></div>
+            </div>
+            <div class="bracket-col">
+              <div class="bracket-col-label">Final</div>
+              <div class="bracket-match bracket-final"><div class="b-slot b-slot-win">M. Holloway <span class="b-score">11&ndash;8</span></div><div class="b-slot b-slot-lose">D. Pruitt <span class="b-score b-score-lose">8&ndash;11</span></div></div>
+            </div>
+            <div class="bracket-col">
+              <div class="bracket-col-label">Champion</div>
+              <div class="bracket-champ-card"><div class="bracket-champ-label">2026 Spring Champion</div><div class="bracket-champ-name">Margaret Holloway</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERMEDIATE -->
+      <div class="league-panel" id="league-intermediate">
+        <div class="gold-rule"></div>
+        <h3 style="font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:4px;">Bayside League</h3>
+        <p style="font-size:0.83rem;color:var(--gray);margin-bottom:30px;">Rating: 3.0 &nbsp;&middot;&nbsp; 8 Players &nbsp;&middot;&nbsp; Round Robin &nbsp;&middot;&nbsp; 10 Games Played</p>
+        <table class="standings-table">
+          <thead><tr><th style="width:36px;">#</th><th>Player</th><th>W</th><th>L</th><th>Win %</th><th>Pts Diff</th></tr></thead>
+          <tbody>
+            <tr><td class="rank rank-1">1</td><td><strong>James Calloway</strong></td><td>9</td><td>1</td><td>90%</td><td>+58</td></tr>
+            <tr><td class="rank rank-2">2</td><td>Elena Vasquez</td><td>8</td><td>2</td><td>80%</td><td>+41</td></tr>
+            <tr><td class="rank rank-3">3</td><td>Michael Driscoll</td><td>7</td><td>3</td><td>70%</td><td>+22</td></tr>
+            <tr><td class="rank rank-3">4</td><td>Catherine Park</td><td>6</td><td>4</td><td>60%</td><td>+10</td></tr>
+            <tr><td class="rank">5</td><td>Andrew Thornton</td><td>5</td><td>5</td><td>50%</td><td>-4</td></tr>
+            <tr><td class="rank">6</td><td>Diana Mills</td><td>4</td><td>6</td><td>40%</td><td>-18</td></tr>
+            <tr><td class="rank">7</td><td>Christopher Reed</td><td>3</td><td>7</td><td>30%</td><td>-33</td></tr>
+            <tr><td class="rank">8</td><td>Natalie Foster</td><td>2</td><td>8</td><td>20%</td><td>-47</td></tr>
+          </tbody>
+        </table>
+        <div class="playoff-heading">Playoff Bracket &mdash; Top 4 Advance</div>
+        <div class="bracket-wrap">
+          <div class="bracket">
+            <div class="bracket-col">
+              <div class="bracket-col-label">Semifinals</div>
+              <div class="bracket-match"><div class="b-slot b-slot-win">J. Calloway <span class="b-score">11&ndash;5</span></div><div class="b-slot b-slot-lose">M. Driscoll <span class="b-score b-score-lose">5&ndash;11</span></div></div>
+              <div class="bracket-match"><div class="b-slot b-slot-win">E. Vasquez <span class="b-score">11&ndash;8</span></div><div class="b-slot b-slot-lose">C. Park <span class="b-score b-score-lose">8&ndash;11</span></div></div>
+            </div>
+            <div class="bracket-col">
+              <div class="bracket-col-label">Final</div>
+              <div class="bracket-match bracket-final"><div class="b-slot b-slot-win">J. Calloway <span class="b-score">11&ndash;6</span></div><div class="b-slot b-slot-lose">E. Vasquez <span class="b-score b-score-lose">6&ndash;11</span></div></div>
+            </div>
+            <div class="bracket-col">
+              <div class="bracket-col-label">Champion</div>
+              <div class="bracket-champ-card"><div class="bracket-champ-label">2026 Spring Champion</div><div class="bracket-champ-name">James Calloway</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADVANCED -->
+      <div class="league-panel" id="league-advanced">
+        <div class="gold-rule"></div>
+        <h3 style="font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:4px;">Cliffside League</h3>
+        <p style="font-size:0.83rem;color:var(--gray);margin-bottom:30px;">Rating: 3.5 &nbsp;&middot;&nbsp; 8 Players &nbsp;&middot;&nbsp; Round Robin &nbsp;&middot;&nbsp; 10 Games Played</p>
+        <table class="standings-table">
+          <thead><tr><th style="width:36px;">#</th><th>Player</th><th>W</th><th>L</th><th>Win %</th><th>Pts Diff</th></tr></thead>
+          <tbody>
+            <tr><td class="rank rank-1">1</td><td><strong>Brandon Whitfield</strong></td><td>9</td><td>1</td><td>90%</td><td>+53</td></tr>
+            <tr><td class="rank rank-2">2</td><td>Sara Donovan</td><td>8</td><td>2</td><td>80%</td><td>+37</td></tr>
+            <tr><td class="rank rank-3">3</td><td>Tyler Ashworth</td><td>7</td><td>3</td><td>70%</td><td>+20</td></tr>
+            <tr><td class="rank rank-3">4</td><td>Nicole Brennan</td><td>6</td><td>4</td><td>60%</td><td>+7</td></tr>
+            <tr><td class="rank">5</td><td>Scott Hargrove</td><td>5</td><td>5</td><td>50%</td><td>-9</td></tr>
+            <tr><td class="rank">6</td><td>Rachel Kimura</td><td>4</td><td>6</td><td>40%</td><td>-22</td></tr>
+            <tr><td class="rank">7</td><td>Derek Manning</td><td>2</td><td>8</td><td>20%</td><td>-38</td></tr>
+            <tr><td class="rank">8</td><td>Amanda Kessler</td><td>1</td><td>9</td><td>10%</td><td>-48</td></tr>
+          </tbody>
+        </table>
+        <div class="playoff-heading">Playoff Bracket &mdash; Top 4 Advance</div>
+        <div class="bracket-wrap">
+          <div class="bracket">
+            <div class="bracket-col">
+              <div class="bracket-col-label">Semifinals</div>
+              <div class="bracket-match"><div class="b-slot b-slot-win">B. Whitfield <span class="b-score">11&ndash;4</span></div><div class="b-slot b-slot-lose">T. Ashworth <span class="b-score b-score-lose">4&ndash;11</span></div></div>
+              <div class="bracket-match"><div class="b-slot b-slot-win">S. Donovan <span class="b-score">11&ndash;9</span></div><div class="b-slot b-slot-lose">N. Brennan <span class="b-score b-score-lose">9&ndash;11</span></div></div>
+            </div>
+            <div class="bracket-col">
+              <div class="bracket-col-label">Final</div>
+              <div class="bracket-match bracket-final"><div class="b-slot b-slot-win">B. Whitfield <span class="b-score">11&ndash;7</span></div><div class="b-slot b-slot-lose">S. Donovan <span class="b-score b-score-lose">7&ndash;11</span></div></div>
+            </div>
+            <div class="bracket-col">
+              <div class="bracket-col-label">Champion</div>
+              <div class="bracket-champ-card"><div class="bracket-champ-label">2026 Spring Champion</div><div class="bracket-champ-name">Brandon Whitfield</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELITE -->
+      <div class="league-panel" id="league-elite">
+        <div class="gold-rule"></div>
+        <h3 style="font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:4px;">Gold Cup League</h3>
+        <p style="font-size:0.83rem;color:var(--gray);margin-bottom:30px;">Rating: 4.0+ &nbsp;&middot;&nbsp; 6 Players &nbsp;&middot;&nbsp; Round Robin &nbsp;&middot;&nbsp; 10 Games Played</p>
+        <table class="standings-table">
+          <thead><tr><th style="width:36px;">#</th><th>Player</th><th>W</th><th>L</th><th>Win %</th><th>Pts Diff</th></tr></thead>
+          <tbody>
+            <tr><td class="rank rank-1">1</td><td><strong>Marcus Webb</strong></td><td>10</td><td>0</td><td>100%</td><td>+74</td></tr>
+            <tr><td class="rank rank-2">2</td><td>Claire Sutton</td><td>8</td><td>2</td><td>80%</td><td>+40</td></tr>
+            <tr><td class="rank rank-3">3</td><td>Ryan Blackwell</td><td>7</td><td>3</td><td>70%</td><td>+24</td></tr>
+            <tr><td class="rank rank-3">4</td><td>Jessica Holt</td><td>6</td><td>4</td><td>60%</td><td>+9</td></tr>
+            <tr><td class="rank">5</td><td>Nathan Covey</td><td>5</td><td>5</td><td>50%</td><td>-4</td></tr>
+            <tr><td class="rank">6</td><td>Olivia Strand</td><td>4</td><td>6</td><td>40%</td><td>-18</td></tr>
+          </tbody>
+        </table>
+        <div class="playoff-heading">Playoff Bracket &mdash; Top 4 Advance</div>
+        <div class="bracket-wrap">
+          <div class="bracket">
+            <div class="bracket-col">
+              <div class="bracket-col-label">Semifinals</div>
+              <div class="bracket-match"><div class="b-slot b-slot-win">M. Webb <span class="b-score">11&ndash;3</span></div><div class="b-slot b-slot-lose">R. Blackwell <span class="b-score b-score-lose">3&ndash;11</span></div></div>
+              <div class="bracket-match"><div class="b-slot b-slot-win">C. Sutton <span class="b-score">11&ndash;8</span></div><div class="b-slot b-slot-lose">J. Holt <span class="b-score b-score-lose">8&ndash;11</span></div></div>
+            </div>
+            <div class="bracket-col">
+              <div class="bracket-col-label">Final</div>
+              <div class="bracket-match bracket-final"><div class="b-slot b-slot-win">M. Webb <span class="b-score">11&ndash;5</span></div><div class="b-slot b-slot-lose">C. Sutton <span class="b-score b-score-lose">5&ndash;11</span></div></div>
+            </div>
+            <div class="bracket-col">
+              <div class="bracket-col-label">Champion</div>
+              <div class="bracket-champ-card"><div class="bracket-champ-label">2026 Spring Champion</div><div class="bracket-champ-name">Marcus Webb</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+<!-- PAGE: LESSONS -->
+<div class="page" id="page-lessons">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label section-label-light">Instruction</span>
+      <h1>Lessons &amp; Clinics</h1>
+      <p>Private and group instruction for adult players at every level, led by USAPA-certified professionals.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="gold-rule"></div>
+      <span class="section-label">Adult Programs</span>
+      <h2 class="section-heading">Find the right program.</h2>
+      <div class="programs-grid">
+        <div class="program-card">
+          <span class="section-label">Private</span>
+          <h3>One-on-One Lesson</h3>
+          <div class="program-price">$95 / hour</div>
+          <p>Fully personalized instruction with your choice of Head Pro or Assistant Pro. Ideal for targeted skill development at any level.</p>
+        </div>
+        <div class="program-card">
+          <span class="section-label">Semi-Private</span>
+          <h3>Partner Instruction</h3>
+          <div class="program-price">$60 / person / hour</div>
+          <p>Bring a partner or pair with another member. Same focused coaching split between two players.</p>
+        </div>
+        <div class="program-card">
+          <span class="section-label">Clinic</span>
+          <h3>Group Clinic</h3>
+          <div class="program-price">$35 / person</div>
+          <p>90-minute theme-based clinics: dinking, third-shot drops, serve mechanics, and more. Max 8 players per session.</p>
+        </div>
+        <div class="program-card">
+          <span class="section-label">Series</span>
+          <h3>4-Week Beginner Series</h3>
+          <div class="program-price">$120 / person</div>
+          <p>Four consecutive Monday evening sessions covering fundamentals through game strategy. Designed for players new to the sport.</p>
+        </div>
+        <div class="program-card">
+          <span class="section-label">Intensive</span>
+          <h3>Weekend Intensive</h3>
+          <div class="program-price">$195 / person</div>
+          <p>Saturday and Sunday, 9 AM&ndash;1 PM. Eight hours of focused instruction with video review and personalized feedback.</p>
+        </div>
+        <div class="program-card">
+          <span class="section-label">Advanced</span>
+          <h3>Strategy &amp; Drilling</h3>
+          <div class="program-price">$55 / person</div>
+          <p>Two-hour advanced sessions for 3.5+ players covering pattern drilling, point construction, and match-play simulation.</p>
+        </div>
+      </div>
+      <div class="gold-rule"></div>
+      <span class="section-label">Our Instructors</span>
+      <h2 class="section-heading" style="margin-bottom:30px;">Meet the professionals.</h2>
+      <div class="instructors-grid">
+        <div class="instructor-card">
+          <div class="instructor-photo"><img src="images/pb-29439337.jpg" alt="Jonathan Mercer, Head Professional" /></div>
+          <div class="instructor-info">
+            <h3>Jonathan Mercer</h3>
+            <div class="instructor-title">Head Professional</div>
+            <p>USAPA Level II certified with 12 years of competitive experience. Former New England regional finalist. Jonathan specializes in developing intermediate players and coaching competitive league members.</p>
+          </div>
+        </div>
+        <div class="instructor-card">
+          <div class="instructor-photo"><img src="images/pb-32975182.jpg" alt="Priya Nair, Assistant Professional" /></div>
+          <div class="instructor-info">
+            <h3>Priya Nair</h3>
+            <div class="instructor-title">Assistant Professional</div>
+            <p>USAPA Level I certified and former collegiate tennis player. Priya brings an analytical approach to coaching and works primarily with beginner and intermediate adult players and the junior program.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:40px;text-align:center;">
+        <p style="font-size:0.9rem;color:var(--gray);margin-bottom:16px;">To schedule a lesson or reserve a clinic spot, contact the pro shop or use the form below.</p>
+        <button class="btn btn-gold" onclick="showPage('contact')">Book a Lesson</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: JUNIORS -->
+<div class="page" id="page-juniors">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label section-label-light">Youth</span>
+      <h1>Junior Programs</h1>
+      <p>Structured development programs for young players ages 6 through 18, year-round.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="gold-rule"></div>
+      <span class="section-label">Year-Round Programs</span>
+      <h2 class="section-heading">Three levels. One standard.</h2>
+      <p class="section-sub">All junior programs are run by Priya Nair and a rotating staff of trained junior coaches. Programs meet in the indoor courts year-round, rain or shine.</p>
+      <div class="juniors-grid">
+        <div class="junior-card">
+          <div class="junior-card-hd"><h3>Little Rippers</h3><div class="junior-ages">Ages 6 &ndash; 9</div></div>
+          <div class="junior-card-body">
+            <p>Introduction to pickleball with an emphasis on fun, movement, and basic hand-eye coordination. No prior experience needed.</p>
+            <div class="sched-item">
+              <div><div class="sched-day">Tuesday</div><div class="sched-focus">Ball Control &amp; Movement</div></div>
+              <div class="sched-time">3:30 &ndash; 4:30 PM</div>
+            </div>
+            <div class="sched-item">
+              <div><div class="sched-day">Thursday</div><div class="sched-focus">Game Play &amp; Rules</div></div>
+              <div class="sched-time">3:30 &ndash; 4:30 PM</div>
+            </div>
+            <div class="junior-fee">$80 / month &nbsp;&middot;&nbsp; Max 10 players</div>
+          </div>
+        </div>
+        <div class="junior-card">
+          <div class="junior-card-hd"><h3>Junior Development</h3><div class="junior-ages">Ages 10 &ndash; 14</div></div>
+          <div class="junior-card-body">
+            <p>Structured skill development covering all fundamentals. Players are grouped by ability for targeted coaching.</p>
+            <div class="sched-item">
+              <div><div class="sched-day">Monday</div><div class="sched-focus">Serve &amp; Return Mechanics</div></div>
+              <div class="sched-time">4:00 &ndash; 5:30 PM</div>
+            </div>
+            <div class="sched-item">
+              <div><div class="sched-day">Wednesday</div><div class="sched-focus">Dinking &amp; Net Play</div></div>
+              <div class="sched-time">4:00 &ndash; 5:30 PM</div>
+            </div>
+            <div class="sched-item">
+              <div><div class="sched-day">Friday</div><div class="sched-focus">Match Play &amp; Strategy</div></div>
+              <div class="sched-time">4:00 &ndash; 5:30 PM</div>
+            </div>
+            <div class="junior-fee">$140 / month &nbsp;&middot;&nbsp; Max 12 players</div>
+          </div>
+        </div>
+        <div class="junior-card">
+          <div class="junior-card-hd"><h3>High School Elite</h3><div class="junior-ages">Ages 15 &ndash; 18</div></div>
+          <div class="junior-card-body">
+            <p>Advanced training for competitive junior players. Focus on tournament preparation, mental performance, and technical refinement.</p>
+            <div class="sched-item">
+              <div><div class="sched-day">Tuesday</div><div class="sched-focus">Advanced Drilling</div></div>
+              <div class="sched-time">5:30 &ndash; 7:00 PM</div>
+            </div>
+            <div class="sched-item">
+              <div><div class="sched-day">Thursday</div><div class="sched-focus">Competitive Match Play</div></div>
+              <div class="sched-time">5:30 &ndash; 7:00 PM</div>
+            </div>
+            <div class="sched-item">
+              <div><div class="sched-day">Saturday</div><div class="sched-focus">Strategy &amp; Video Review</div></div>
+              <div class="sched-time">9:00 &ndash; 10:30 AM</div>
+            </div>
+            <div class="junior-fee">$165 / month &nbsp;&middot;&nbsp; Max 8 players</div>
+          </div>
+        </div>
+      </div>
+      <div class="summer-banner">
+        <div>
+          <h3>Summer Intensive Program</h3>
+          <p>June through August &mdash; daily morning sessions for all junior levels. Players train Monday through Friday, 8:00 AM to noon across indoor and outdoor courts. Spots are limited to 24 players total and typically fill by mid-April.</p>
+          <p style="margin-top:8px;font-size:0.86rem;">$480 / 4-week session &nbsp;&middot;&nbsp; Scholarships available &mdash; see the Donate page.</p>
+        </div>
+        <button class="btn btn-outline-dark" onclick="showPage('contact')">Register for Summer</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: NEWS -->
+<div class="page" id="page-news">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label section-label-light">Club Updates</span>
+      <h1>News &amp; Announcements</h1>
+      <p>Latest updates from Harborview Pickleball Club.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-card-img"><img src="images/pb-spring.jpg" alt="Spring League" /></div>
+          <div class="news-card-body">
+            <div class="news-date">March 1, 2026</div>
+            <h3>Spring League Registration Now Open</h3>
+            <p>Registration for all four skill-level leagues opens March 15. All current members are eligible. Spots are limited to eight players per league &mdash; secure your place before the April 1 deadline.</p>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><img src="images/pb-29439333.jpg" alt="Court Expansion" /></div>
+          <div class="news-card-body">
+            <div class="news-date">February 22, 2026</div>
+            <h3>Court Expansion Project Reaches Full Funding</h3>
+            <p>Thanks to the extraordinary generosity of our members, the New Court Expansion Fund has reached its $85,000 goal. Construction on four additional indoor courts begins in April 2026.</p>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><img src="images/pb-29439337.jpg" alt="Head Pro" /></div>
+          <div class="news-card-body">
+            <div class="news-date">February 10, 2026</div>
+            <h3>Jonathan Mercer Joins as Head Professional</h3>
+            <p>We are proud to welcome Jonathan Mercer as the club's new Head Professional. USAPA Level II certified and a former New England regional finalist, Jonathan brings exceptional coaching expertise to every program we offer.</p>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><div class="news-card-img-placeholder"></div></div>
+          <div class="news-card-body">
+            <div class="news-date">January 28, 2026</div>
+            <h3>2026 Annual Membership Renewals Complete</h3>
+            <p>We are pleased to report a 96% renewal rate for the 2026 membership year &mdash; the highest in club history. Thank you to all members for your continued commitment to Harborview.</p>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><div class="news-card-img-placeholder"></div></div>
+          <div class="news-card-body">
+            <div class="news-date">January 15, 2026</div>
+            <h3>Junior Scholarship Program Awards Three Students</h3>
+            <p>The HPC Junior Scholarship Committee awarded full-year program scholarships to three deserving junior members for the 2026 season. Scholarship applications for Summer 2026 open March 1.</p>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><div class="news-card-img-placeholder"></div></div>
+          <div class="news-card-body">
+            <div class="news-date">December 18, 2025</div>
+            <h3>Fall Classic Results &mdash; Webb Wins Gold Cup Title</h3>
+            <p>Marcus Webb claimed his second consecutive Gold Cup championship at the Fall Classic, defeating Claire Sutton in straight games. Full results are available on the Leagues page.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- PAGE: DONATE -->
+<div class="page" id="page-donate">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label section-label-light">Support the Club</span>
+      <h1>Donate &amp; Support</h1>
+      <p>Member contributions fund court expansion, junior scholarships, and club operations.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="gold-rule"></div>
+      <span class="section-label">Active Campaigns</span>
+      <h2 class="section-heading">Help us build something lasting.</h2>
+      <div class="campaign-grid">
+        <div class="campaign-card">
+          <span class="campaign-tag">Court Expansion</span>
+          <h3>New Court Expansion Fund</h3>
+          <p>Help fund the construction of four additional indoor courts to serve our growing membership. Construction begins April 2026 &mdash; your contribution goes directly toward materials and installation.</p>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%;"></div></div>
+          <div class="progress-labels"><span><strong>$85,000</strong> raised</span><span>Goal: $85,000</span></div>
+          <p style="font-size:0.82rem;color:var(--gold);font-weight:600;margin-top:10px;margin-bottom:0;">Fully funded &mdash; thank you to all contributors.</p>
+        </div>
+        <div class="campaign-card">
+          <span class="campaign-tag">Youth Development</span>
+          <h3>Junior Scholarship Program</h3>
+          <p>The HPC Junior Scholarship Fund provides full-year program access to young players whose families cannot afford membership fees. Every dollar goes directly toward a junior's development.</p>
+          <div class="progress-bar"><div class="progress-fill" style="width:75%;"></div></div>
+          <div class="progress-labels"><span><strong>$18,650</strong> raised</span><span>Goal: $25,000</span></div>
+          <div style="margin-top:20px;"><button class="btn btn-gold" onclick="document.getElementById('donate-anchor').scrollIntoView({behavior:'smooth'})">Donate to This Fund</button></div>
+        </div>
+      </div>
+      <div class="donate-form" id="donate-anchor">
+        <h3>Make a Contribution</h3>
+        <p>All contributions are processed securely via PayPal. Harborview Pickleball Club is a 501(c)(7) social club &mdash; please consult your tax advisor regarding deductibility.</p>
+        <div style="font-size:0.76rem;font-weight:600;letter-spacing:0.05em;color:var(--navy);margin-bottom:10px;">Select Amount</div>
+        <div class="amount-grid">
+          <button class="amount-btn selected" onclick="selectAmount(this)">$25</button>
+          <button class="amount-btn" onclick="selectAmount(this)">$50</button>
+          <button class="amount-btn" onclick="selectAmount(this)">$100</button>
+          <button class="amount-btn" onclick="selectAmount(this)">$250</button>
+        </div>
+        <div class="form-group"><label>Or enter a custom amount</label><input type="number" placeholder="$ Amount" min="1" /></div>
+        <div class="form-group">
+          <label>Designate this gift to</label>
+          <select>
+            <option>Junior Scholarship Program</option>
+            <option>General Club Fund</option>
+            <option>Equipment &amp; Facilities</option>
+            <option>No preference</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="First" /></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last" /></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" /></div>
+        <button class="btn-submit">Proceed to Payment via PayPal</button>
+        <p style="font-size:0.76rem;color:var(--gray);text-align:center;margin-top:11px;">Contributions processed securely through PayPal.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: CONTACT -->
+<div class="page" id="page-membership">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label section-label-light">Join Harborview</span>
+      <h1>Membership</h1>
+      <p>Sixteen courts, competitive leagues, and a community built around the game. Membership opens the door to all of it.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+
+      <!-- Tier Cards -->
+      <div class="gold-rule"></div>
+      <span class="section-label">Choose Your Plan</span>
+      <h2 class="section-heading" style="margin-bottom:10px;">Membership Tiers</h2>
+      <p style="font-size:0.88rem;color:var(--gray);margin-bottom:36px;">All memberships include a 12-month agreement. Annual billing saves two months.</p>
+
+      <div class="mem-grid">
+
+        <!-- Junior -->
+        <div class="mem-card">
+          <div class="mem-tier">Junior</div>
+          <div class="mem-price-wrap">
+            <span class="mem-price">$50</span><span class="mem-period">&thinsp;/month</span>
+          </div>
+          <div class="mem-annual">$500/yr &mdash; save $100</div>
+          <hr class="mem-divider" />
+          <ul class="mem-features">
+            <li>Ages 18 and under</li>
+            <li>Unlimited court access</li>
+            <li>Junior program eligibility</li>
+            <li>League participation</li>
+            <li>Member guest rate (1 guest/visit)</li>
+            <li>Clubhouse access</li>
+            <li class="muted">Locker room not included</li>
+            <li class="muted">No monthly guest passes</li>
+          </ul>
+          <div class="mem-cta"><button class="btn btn-outline-dark" style="width:100%;" onclick="showPage('contact')">Apply Now</button></div>
+        </div>
+
+        <!-- Individual -->
+        <div class="mem-card featured">
+          <div class="mem-badge">Most Popular</div>
+          <div class="mem-tier">Individual</div>
+          <div class="mem-price-wrap">
+            <span class="mem-price">$120</span><span class="mem-period">&thinsp;/month</span>
+          </div>
+          <div class="mem-annual">$1,200/yr &mdash; save $240</div>
+          <hr class="mem-divider" />
+          <ul class="mem-features">
+            <li>Single adult membership</li>
+            <li>Unlimited court access</li>
+            <li>7-day advance booking window</li>
+            <li>League &amp; tournament eligibility</li>
+            <li>2 guest passes per month</li>
+            <li>Full locker room access</li>
+            <li>10% discount on private lessons</li>
+            <li>Priority event registration</li>
+          </ul>
+          <div class="mem-cta"><button class="btn btn-gold" style="width:100%;" onclick="showPage('contact')">Apply Now</button></div>
+        </div>
+
+        <!-- Dual -->
+        <div class="mem-card">
+          <div class="mem-tier">Dual</div>
+          <div class="mem-price-wrap">
+            <span class="mem-price">$200</span><span class="mem-period">&thinsp;/month</span>
+          </div>
+          <div class="mem-annual">$2,000/yr &mdash; save $400</div>
+          <hr class="mem-divider" />
+          <ul class="mem-features">
+            <li>Two adults, one household</li>
+            <li>Unlimited court access (both)</li>
+            <li>7-day advance booking window</li>
+            <li>League &amp; tournament eligibility</li>
+            <li>4 guest passes per month (shared)</li>
+            <li>Full locker room access (both)</li>
+            <li>15% discount on private lessons</li>
+            <li>Priority event registration</li>
+          </ul>
+          <div class="mem-cta"><button class="btn btn-outline-dark" style="width:100%;" onclick="showPage('contact')">Apply Now</button></div>
+        </div>
+
+        <!-- Family -->
+        <div class="mem-card">
+          <div class="mem-tier">Family</div>
+          <div class="mem-price-wrap">
+            <span class="mem-price">$275</span><span class="mem-period">&thinsp;/month</span>
+          </div>
+          <div class="mem-annual">$2,750/yr &mdash; save $550</div>
+          <hr class="mem-divider" />
+          <ul class="mem-features">
+            <li>Up to 2 adults + dependent children</li>
+            <li>Unlimited court access (all members)</li>
+            <li>7-day advance booking window</li>
+            <li>League &amp; tournament eligibility (adults)</li>
+            <li>Junior programs included (children)</li>
+            <li>6 guest passes per month (shared)</li>
+            <li>Full locker room access</li>
+            <li>20% discount on private lessons</li>
+          </ul>
+          <div class="mem-cta"><button class="btn btn-outline-dark" style="width:100%;" onclick="showPage('contact')">Apply Now</button></div>
+        </div>
+
+      </div><!-- /mem-grid -->
+
+      <!-- How It Works -->
+      <div class="how-wrap">
+        <span class="section-label section-label-light">Simple Process</span>
+        <h2 class="section-heading" style="color:var(--white);margin-bottom:0;">How It Works</h2>
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="how-num">01</div>
+            <div class="how-title">Submit Your Application</div>
+            <div class="how-desc">Fill out the short form on our Contact page — select "Membership" as your inquiry type. Takes under two minutes.</div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">02</div>
+            <div class="how-title">We'll Be In Touch</div>
+            <div class="how-desc">Our membership director will reach out within one business day to confirm your tier, answer questions, and send you the membership agreement.</div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">03</div>
+            <div class="how-title">Welcome to Harborview</div>
+            <div class="how-desc">Sign the agreement, complete payment, and receive your member credentials — including CourtReserve access for online court booking.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fine print -->
+      <div class="mem-note">
+        All memberships are 12-month agreements billed monthly or annually. Annual billing saves the equivalent of two months. Membership is non-transferable. Junior members must be accompanied by a member adult for court access. Questions? Contact us at <strong>info@harborviewpickleball.com</strong> or call <strong>(203) 555-0184</strong>.
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="page" id="page-contact">
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label section-label-light">Get In Touch</span>
+      <h1>Contact &amp; Membership</h1>
+      <p>Questions about membership, programs, or courts? We respond within one business day.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="two-col two-col-top">
+        <div>
+          <div class="gold-rule"></div>
+          <span class="section-label">Find Us</span>
+          <h2 class="section-heading" style="margin-bottom:20px;">Harborview<br />Pickleball Club</h2>
+          <p style="font-size:0.92rem;color:#4A5060;line-height:1.75;margin-bottom:28px;">Located at the end of Shore Road in Harborview, Connecticut. Free parking is available in the main lot. The clubhouse entrance is adjacent to Indoor Courts A and B.</p>
+          <div class="contact-detail">
+            <div class="contact-icon">Addr</div>
+            <div><div class="contact-detail-label">Address</div><div class="contact-detail-value">142 Shore Road, Harborview, CT 06820</div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">Ph</div>
+            <div><div class="contact-detail-label">Phone</div><div class="contact-detail-value">(203) 555-0184</div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">@</div>
+            <div><div class="contact-detail-label">Email</div><div class="contact-detail-value">info@harborviewpickleball.com</div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">Hrs</div>
+            <div><div class="contact-detail-label">Clubhouse Hours</div><div class="contact-detail-value">Mon&ndash;Fri &nbsp;7:00 AM &ndash; 9:00 PM<br />Sat&ndash;Sun &nbsp;7:00 AM &ndash; 8:00 PM</div></div>
+          </div>
+        </div>
+        <div class="form-card">
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group"><label>First Name *</label><input type="text" name="firstName" required placeholder="First" /></div>
+              <div class="form-group"><label>Last Name *</label><input type="text" name="lastName" required placeholder="Last" /></div>
+            </div>
+            <div class="form-group"><label>Email *</label><input type="email" name="email" required placeholder="your@email.com" /></div>
+            <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="(000) 000-0000" /></div>
+            <div class="form-group">
+              <label>Inquiry Type</label>
+              <select name="inquiry">
+                <option value="">Select...</option>
+                <option>Membership</option>
+                <option>Court Reservation</option>
+                <option>Lessons &amp; Clinics</option>
+                <option>Junior Programs</option>
+                <option>Events &amp; Tournaments</option>
+                <option>General Question</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Message *</label><textarea name="message" required placeholder="Tell us how we can help..."></textarea></div>
+            <button type="submit" class="btn-submit">Send Message</button>
+            <div class="confirm-msg" id="contact-confirm">Thank you. We will be in touch within one business day.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Harborview Pickleball Club</div>
+      <div class="footer-gold-line"></div>
+      <p>142 Shore Road<br />Harborview, CT 06820<br />Est. 1987</p>
+    </div>
+    <div class="footer-col">
+      <h4>Club</h4>
+      <ul>
+        <li><button onclick="showPage('home')">Home</button></li>
+        <li><button onclick="showPage('about')">About</button></li>
+        <li><button onclick="showPage('news')">News</button></li>
+        <li><button onclick="showPage('donate')">Donate</button></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Play</h4>
+      <ul>
+        <li><button onclick="showPage('courts')">Courts</button></li>
+        <li><button onclick="showPage('events')">Events</button></li>
+        <li><button onclick="showPage('leagues')">Leagues</button></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><button onclick="showPage('lessons')">Lessons &amp; Clinics</button></li>
+        <li><button onclick="showPage('juniors')">Junior Programs</button></li>
+        <li><button onclick="showPage('membership')">Membership</button></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Harborview Pickleball Club. All rights reserved.</p>
+    <p class="footer-credit">Photos: <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> (free license) &nbsp;&middot;&nbsp; Built by <a href="https://courtcode.netlify.app" target="_blank" rel="noopener">Court &amp; Code</a></p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    var pg = document.getElementById('page-' + id);
+    if (pg) pg.classList.add('active');
+    document.querySelectorAll('[data-page]').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-page') === id);
+    });
+    window.scrollTo(0, 0);
+  }
+  window.showPage = showPage;
+
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', function() { mobileMenu.classList.toggle('open'); });
+  function closeMobile() { mobileMenu.classList.remove('open'); }
+  window.closeMobile = closeMobile;
+
+  function showLeague(btn, id) {
+    document.querySelectorAll('.league-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.league-tab').forEach(function(t) { t.classList.remove('active'); });
+    var panel = document.getElementById('league-' + id);
+    if (panel) panel.classList.add('active');
+    btn.classList.add('active');
+  }
+  window.showLeague = showLeague;
+
+  function selectAmount(btn) {
+    document.querySelectorAll('.amount-btn').forEach(function(b) { b.classList.remove('selected'); });
+    btn.classList.add('selected');
+  }
+  window.selectAmount = selectAmount;
+
+  var form = document.getElementById('contact-form');
+  var confirmMsg = document.getElementById('contact-confirm');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var valid = true;
+    form.querySelectorAll('[required]').forEach(function(f) {
+      if (!f.value.trim()) {
+        valid = false;
+        f.style.borderColor = '#ef4444';
+        f.addEventListener('input', function() { f.style.borderColor = ''; }, { once: true });
+      }
+    });
+    if (!valid) return;
+    var data = new FormData(form);
+    var lines = [];
+    data.forEach(function(v, k) { lines.push(k + ': ' + v); });
+    var subject = encodeURIComponent('HPC Inquiry — ' + (data.get('inquiry') || 'General'));
+    var body = encodeURIComponent(lines.join('\n'));
+    window.location.href = 'mailto:info@harborviewpickleball.com?subject=' + subject + '&body=' + body;
+    confirmMsg.style.display = 'block';
+    form.querySelectorAll('input, textarea, select').forEach(function(el) { el.value = ''; });
+    setTimeout(function() { confirmMsg.style.display = 'none'; }, 8000);
+  });
+})();
+</script>
+</body>
+</html>
